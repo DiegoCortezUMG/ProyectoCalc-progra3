@@ -3,13 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package calc;
-
+import java.util.StringTokenizer;
 /**
  *
  * @author Usuario
  */
 public class main extends javax.swing.JFrame {
-
+String operacion="";
     /**
      * Creates new form main
      */
@@ -42,10 +42,17 @@ public class main extends javax.swing.JFrame {
         resta = new javax.swing.JButton();
         multi = new javax.swing.JButton();
         division = new javax.swing.JButton();
+        operaciones = new javax.swing.JTextField();
+        prueba = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         boton1.setText("1");
+        boton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton1ActionPerformed(evt);
+            }
+        });
 
         boton2.setText("2");
         boton2.addActionListener(new java.awt.event.ActionListener() {
@@ -55,32 +62,102 @@ public class main extends javax.swing.JFrame {
         });
 
         boton3.setText("3");
+        boton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton3ActionPerformed(evt);
+            }
+        });
 
         boton4.setText("4");
+        boton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton4ActionPerformed(evt);
+            }
+        });
 
         boton5.setText("5");
+        boton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton5ActionPerformed(evt);
+            }
+        });
 
         boton6.setText("6");
+        boton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton6ActionPerformed(evt);
+            }
+        });
 
         boton7.setText("7");
+        boton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton7ActionPerformed(evt);
+            }
+        });
 
         boton8.setText("8");
+        boton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton8ActionPerformed(evt);
+            }
+        });
 
         boton9.setText("9");
+        boton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton9ActionPerformed(evt);
+            }
+        });
 
         boton0.setText("0");
+        boton0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton0ActionPerformed(evt);
+            }
+        });
 
         botonAceptar.setText("Aceptar");
+        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAceptarActionPerformed(evt);
+            }
+        });
 
         botonBorrar.setText("Borrar");
+        botonBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBorrarActionPerformed(evt);
+            }
+        });
 
         suma.setText("+");
+        suma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sumaActionPerformed(evt);
+            }
+        });
 
         resta.setText("-");
+        resta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                restaActionPerformed(evt);
+            }
+        });
 
-        multi.setText("x");
+        multi.setText("*");
+        multi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                multiActionPerformed(evt);
+            }
+        });
 
         division.setText("/");
+        division.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                divisionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,46 +165,58 @@ public class main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(boton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonAceptar))
+                        .addComponent(operaciones)
+                        .addGap(88, 88, 88))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(boton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(boton6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(boton7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(boton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(boton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(boton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botonAceptar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(boton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(boton5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(boton6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botonBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(boton7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(boton0)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(boton8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(boton9)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(boton0)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(boton8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(boton9)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(resta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(suma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(multi, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(division, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(88, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(resta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(suma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(multi, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(division, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(88, 88, 88))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(prueba, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(55, 55, 55)
+                .addComponent(operaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton1)
                     .addComponent(boton2)
@@ -150,15 +239,94 @@ public class main extends javax.swing.JFrame {
                     .addComponent(boton9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boton0)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(prueba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton2ActionPerformed
-        // TODO add your handling code here:
+operacion=operacion+"2";
+operaciones.setText(operacion);
     }//GEN-LAST:event_boton2ActionPerformed
+
+    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
+operaciones.setText(operacion);
+int op=Integer.valueOf(operacion);
+prueba.setText(operacion+"="+String.valueOf(op));
+    }//GEN-LAST:event_botonAceptarActionPerformed
+
+    private void boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1ActionPerformed
+operacion=operacion+"1";
+operaciones.setText(operacion);
+    }//GEN-LAST:event_boton1ActionPerformed
+
+    private void boton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton3ActionPerformed
+operacion=operacion+"3";
+operaciones.setText(operacion);
+    }//GEN-LAST:event_boton3ActionPerformed
+
+    private void boton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton4ActionPerformed
+operacion=operacion+"4";
+operaciones.setText(operacion);
+    }//GEN-LAST:event_boton4ActionPerformed
+
+    private void boton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton5ActionPerformed
+operacion=operacion+"5";
+operaciones.setText(operacion);
+    }//GEN-LAST:event_boton5ActionPerformed
+
+    private void boton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton6ActionPerformed
+operacion=operacion+"6";
+operaciones.setText(operacion);
+    }//GEN-LAST:event_boton6ActionPerformed
+
+    private void boton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton7ActionPerformed
+operacion=operacion+"7";
+operaciones.setText(operacion);
+    }//GEN-LAST:event_boton7ActionPerformed
+
+    private void boton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton8ActionPerformed
+operacion=operacion+"8";
+operaciones.setText(operacion);
+    }//GEN-LAST:event_boton8ActionPerformed
+
+    private void boton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton9ActionPerformed
+operacion=operacion+"9";
+operaciones.setText(operacion);
+    }//GEN-LAST:event_boton9ActionPerformed
+
+    private void boton0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton0ActionPerformed
+operacion=operacion+"0";
+operaciones.setText(operacion);
+    }//GEN-LAST:event_boton0ActionPerformed
+
+    private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
+operacion=" ";
+operaciones.setText(operacion);
+    }//GEN-LAST:event_botonBorrarActionPerformed
+
+    private void sumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumaActionPerformed
+operacion=operacion+"+";
+operaciones.setText(operacion);
+    }//GEN-LAST:event_sumaActionPerformed
+
+    private void multiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiActionPerformed
+operacion=operacion+"*";
+operaciones.setText(operacion);
+    }//GEN-LAST:event_multiActionPerformed
+
+    private void restaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restaActionPerformed
+operacion=operacion+"-";
+operaciones.setText(operacion);
+    }//GEN-LAST:event_restaActionPerformed
+
+    private void divisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_divisionActionPerformed
+operacion=operacion+"/";
+operaciones.setText(operacion);
+    }//GEN-LAST:event_divisionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,6 +378,8 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JButton botonBorrar;
     private javax.swing.JButton division;
     private javax.swing.JButton multi;
+    private javax.swing.JTextField operaciones;
+    private javax.swing.JTextField prueba;
     private javax.swing.JButton resta;
     private javax.swing.JButton suma;
     // End of variables declaration//GEN-END:variables
