@@ -3,15 +3,94 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package calc;
+
 /**
+
  *
  * @author Usuario
- */import java.util.StringTokenizer;
-public class main extends javax.swing.JFrame {
-String operacion="",signo=""; int op=0;
+ */
+
+class main extends javax.swing.JFrame {
+String operacion="",signo=""; int op=0,i, longi; char x;
     /**
      * Creates new form main
      */
+public static double eval(final String str) {
+    return new Object() {
+        int pos = -1, ch;
+        
+        void nextChar() {
+            ch = (++pos < str.length()) ? str.charAt(pos) : -1;
+        }
+        
+        boolean eat(int charToEat) {
+            while (ch == ' ') nextChar();
+            if (ch == charToEat) {
+                nextChar();
+                return true;
+            }
+            return false;
+        }
+        
+        double parse() {
+            nextChar();
+            double x = parseExpression();
+            if (pos < str.length()) throw new RuntimeException("Unexpected: " + (char)ch);
+            return x;
+        }
+        double parseExpression() {
+            double x = parseTerm();
+            for (;;) {
+                if      (eat('+')) x += parseTerm(); // addition
+                else if (eat('-')) x -= parseTerm(); // subtraction
+                else return x;
+            }
+        }
+        double parseTerm() {
+            double x = parseFactor();
+            for (;;) {
+                if      (eat('*')) x *= parseFactor(); // multiplication
+                else if (eat('/')) x /= parseFactor(); // division
+                else return x;
+            }
+        }
+        
+        double parseFactor() {
+            if (eat('+')) return +parseFactor(); // unary plus
+            if (eat('-')) return -parseFactor(); // unary minus
+            
+            double x;
+            int startPos = this.pos;
+            if (eat('(')) { // parentheses
+                x = parseExpression();
+                if (!eat(')')) throw new RuntimeException("Missing ')'");
+            } else if ((ch >= '0' && ch <= '9') || ch == '.') { // numbers
+                while ((ch >= '0' && ch <= '9') || ch == '.') nextChar();
+                x = Double.parseDouble(str.substring(startPos, this.pos));
+            } else if (ch >= 'a' && ch <= 'z') { // functions
+                while (ch >= 'a' && ch <= 'z') nextChar();
+                String func = str.substring(startPos, this.pos);
+                if (eat('(')) {
+                    x = parseExpression();
+                    if (!eat(')')) throw new RuntimeException("Missing ')' after argument to " + func);
+                } else {
+                    x = parseFactor();
+                }
+                if (func.equals("sqrt")) x = Math.sqrt(x);
+                else if (func.equals("sin")) x = Math.sin(Math.toRadians(x));
+                else if (func.equals("cos")) x = Math.cos(Math.toRadians(x));
+                else if (func.equals("tan")) x = Math.tan(Math.toRadians(x));
+                else throw new RuntimeException("Unknown function: " + func);
+            } else {
+                throw new RuntimeException("Unexpected: " + (char)ch);
+            }
+            
+            if (eat('^')) x = Math.pow(x, parseFactor()); // exponentiation
+            
+            return x;
+        }
+    }.parse();
+}
     public main() {
         initComponents();
     }
@@ -242,18 +321,7 @@ operaciones.setText(operacion);
     }//GEN-LAST:event_boton2ActionPerformed
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
-StringTokenizer st = new StringTokenizer(operacion, signo, false);
-     while (st.hasMoreTokens()) {
-     Integer.parseInt(signo);
-     Integer.parseInt(st.nextToken());
-         if(st.nextToken()==signo){
-             op/*=*/signo;
-     }
-     else{
-         op=Integer.parseInt(st.nextToken());
-     }
-     }
-operaciones.setText(operacion+"="+String.valueOf(op));
+operaciones.setText(operacion+"="+String.valueOf(eval(operacion)));
     }//GEN-LAST:event_botonAceptarActionPerformed
 
     private void boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1ActionPerformed
