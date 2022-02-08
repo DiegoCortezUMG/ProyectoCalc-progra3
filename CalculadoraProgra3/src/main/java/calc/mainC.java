@@ -124,6 +124,10 @@ public static double eval(final String str) {
         Bsin = new javax.swing.JButton();
         Bcos = new javax.swing.JButton();
         Btan = new javax.swing.JButton();
+        raiz = new javax.swing.JButton();
+        exp = new javax.swing.JButton();
+        parI = new javax.swing.JButton();
+        parD = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -239,6 +243,8 @@ public static double eval(final String str) {
             }
         });
 
+        operaciones.setEditable(false);
+
         Bsin.setText("sin");
         Bsin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,6 +263,34 @@ public static double eval(final String str) {
         Btan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtanActionPerformed(evt);
+            }
+        });
+
+        raiz.setText("√ ");
+        raiz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                raizActionPerformed(evt);
+            }
+        });
+
+        exp.setText(" ^");
+        exp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                expActionPerformed(evt);
+            }
+        });
+
+        parI.setText("(");
+        parI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                parIActionPerformed(evt);
+            }
+        });
+
+        parD.setText(")");
+        parD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                parDActionPerformed(evt);
             }
         });
 
@@ -298,7 +332,8 @@ public static double eval(final String str) {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(resta, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                            .addComponent(suma, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
+                            .addComponent(suma, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                            .addComponent(parI, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -306,12 +341,18 @@ public static double eval(final String str) {
                                 .addGap(18, 18, 18)
                                 .addComponent(Bsin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(division, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(division, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(parD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(Btan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(Bcos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 70, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(raiz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(exp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -327,7 +368,8 @@ public static double eval(final String str) {
                     .addComponent(botonAceptar)
                     .addComponent(suma)
                     .addComponent(multi)
-                    .addComponent(Bsin))
+                    .addComponent(Bsin)
+                    .addComponent(raiz))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton4)
@@ -336,13 +378,16 @@ public static double eval(final String str) {
                     .addComponent(botonBorrar)
                     .addComponent(resta)
                     .addComponent(division)
-                    .addComponent(Bcos))
+                    .addComponent(Bcos)
+                    .addComponent(exp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton7)
                     .addComponent(boton8)
                     .addComponent(boton9)
-                    .addComponent(Btan))
+                    .addComponent(Btan)
+                    .addComponent(parI)
+                    .addComponent(parD))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boton0)
                 .addContainerGap(104, Short.MAX_VALUE))
@@ -453,6 +498,30 @@ operacion=operacion+signo;
 operaciones.setText(operacion);
     }//GEN-LAST:event_BtanActionPerformed
 
+    private void raizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raizActionPerformed
+signo="sqrt";
+operacion=operacion+signo;
+operaciones.setText(operacion);
+    }//GEN-LAST:event_raizActionPerformed
+
+    private void parIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parIActionPerformed
+signo=")";
+operacion=operacion+signo;
+operaciones.setText(operacion);
+    }//GEN-LAST:event_parIActionPerformed
+
+    private void parDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parDActionPerformed
+signo=")";
+operacion=operacion+signo;
+operaciones.setText(operacion);
+    }//GEN-LAST:event_parDActionPerformed
+
+    private void expActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expActionPerformed
+signo="^";
+operacion=operacion+signo;
+operaciones.setText(operacion);
+    }//GEN-LAST:event_expActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -505,8 +574,12 @@ operaciones.setText(operacion);
     private javax.swing.JButton botonAceptar;
     private javax.swing.JButton botonBorrar;
     private javax.swing.JButton division;
+    private javax.swing.JButton exp;
     private javax.swing.JButton multi;
     private javax.swing.JTextField operaciones;
+    private javax.swing.JButton parD;
+    private javax.swing.JButton parI;
+    private javax.swing.JButton raiz;
     private javax.swing.JButton resta;
     private javax.swing.JButton suma;
     // End of variables declaration//GEN-END:variables

@@ -64,6 +64,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="resta" pref="47" max="32767" attributes="0"/>
                           <Component id="suma" pref="47" max="32767" attributes="0"/>
+                          <Component id="parI" alignment="0" pref="47" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -73,7 +74,10 @@
                               <Component id="Bsin" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="division" min="-2" pref="47" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="division" min="-2" pref="47" max="-2" attributes="0"/>
+                                  <Component id="parD" max="32767" attributes="0"/>
+                              </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="Btan" max="32767" attributes="0"/>
@@ -81,7 +85,12 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="70" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="raiz" max="32767" attributes="0"/>
+                          <Component id="exp" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -102,6 +111,7 @@
                   <Component id="suma" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="multi" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Bsin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="raiz" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -112,6 +122,7 @@
                   <Component id="resta" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="division" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Bcos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="exp" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -119,6 +130,8 @@
                   <Component id="boton8" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="boton9" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Btan" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="parI" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="parD" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="boton0" min="-2" max="-2" attributes="0"/>
@@ -257,6 +270,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="operaciones">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="main_operaciones"/>
       </AuxValues>
@@ -283,6 +299,38 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtanActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="raiz">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x221a; "/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="raizActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="exp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=" ^"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="expActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="parI">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="("/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="parIActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="parD">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=")"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="parDActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
