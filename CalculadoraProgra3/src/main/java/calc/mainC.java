@@ -77,9 +77,9 @@ public static double eval(final String str) {
                     x = parseFactor();
                 }
                 if (func.equals("sqrt")) x = Math.sqrt(x);
-                else if (func.equals("sin")) x = Math.sin(Math.toRadians(x));
-                else if (func.equals("cos")) x = Math.cos(Math.toRadians(x));
-                else if (func.equals("tan")) x = Math.tan(Math.toRadians(x));
+                else if (func.equals("sin")) x = Math.sin(Math.toDegrees(x));
+                else if (func.equals("cos")) x = Math.cos(Math.toDegrees(x));
+                else if (func.equals("tan")) x = Math.tan(Math.toDegrees(x));
                 else throw new RuntimeException("Unknown function: " + func);
             } else {
                 throw new RuntimeException("Unexpected: " + (char)ch);
@@ -121,6 +121,9 @@ public static double eval(final String str) {
         multi = new javax.swing.JButton();
         division = new javax.swing.JButton();
         operaciones = new javax.swing.JTextField();
+        Bsin = new javax.swing.JButton();
+        Bcos = new javax.swing.JButton();
+        Btan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -236,13 +239,34 @@ public static double eval(final String str) {
             }
         });
 
+        Bsin.setText("sin");
+        Bsin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BsinActionPerformed(evt);
+            }
+        });
+
+        Bcos.setText("cos");
+        Bcos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BcosActionPerformed(evt);
+            }
+        });
+
+        Btan.setText("tan");
+        Btan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtanActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(operaciones)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -276,10 +300,19 @@ public static double eval(final String str) {
                             .addComponent(resta, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
                             .addComponent(suma, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(multi, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(division, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(142, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(multi, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Bsin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(division, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Btan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Bcos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 70, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,7 +326,8 @@ public static double eval(final String str) {
                     .addComponent(boton3)
                     .addComponent(botonAceptar)
                     .addComponent(suma)
-                    .addComponent(multi))
+                    .addComponent(multi)
+                    .addComponent(Bsin))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton4)
@@ -301,12 +335,14 @@ public static double eval(final String str) {
                     .addComponent(boton6)
                     .addComponent(botonBorrar)
                     .addComponent(resta)
-                    .addComponent(division))
+                    .addComponent(division)
+                    .addComponent(Bcos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton7)
                     .addComponent(boton8)
-                    .addComponent(boton9))
+                    .addComponent(boton9)
+                    .addComponent(Btan))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boton0)
                 .addContainerGap(104, Short.MAX_VALUE))
@@ -321,7 +357,8 @@ operaciones.setText(operacion);
     }//GEN-LAST:event_boton2ActionPerformed
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
-operaciones.setText(operacion+"="+String.valueOf(eval(operacion)));
+operacion=operaciones.getText();
+        operaciones.setText(operacion+"="+String.valueOf(eval(operacion)));
     }//GEN-LAST:event_botonAceptarActionPerformed
 
     private void boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1ActionPerformed
@@ -398,6 +435,24 @@ operacion=operacion+signo;
 operaciones.setText(operacion);
     }//GEN-LAST:event_divisionActionPerformed
 
+    private void BsinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BsinActionPerformed
+signo="sin";
+operacion=operacion+signo;
+operaciones.setText(operacion);
+    }//GEN-LAST:event_BsinActionPerformed
+
+    private void BcosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BcosActionPerformed
+signo="cos";
+operacion=operacion+signo;
+operaciones.setText(operacion);
+    }//GEN-LAST:event_BcosActionPerformed
+
+    private void BtanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtanActionPerformed
+signo="tan";
+operacion=operacion+signo;
+operaciones.setText(operacion);
+    }//GEN-LAST:event_BtanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -434,6 +489,9 @@ operaciones.setText(operacion);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Bcos;
+    private javax.swing.JButton Bsin;
+    private javax.swing.JButton Btan;
     private javax.swing.JButton boton0;
     private javax.swing.JButton boton1;
     private javax.swing.JButton boton2;
